@@ -580,6 +580,24 @@ def AuswertungAnzeigen():
         info_label = ctk.CTkLabel(frameAuswertung, text=info_text, font=ctk.CTkFont(size=12), 
                                  wraplength=800)
         info_label.pack(pady=(10, 10))
+                # --- Ampelanzeige je nach Gesamtdurchschnitt ---
+        ampelFarbe = "grey"
+        if overall_avg <= 2:
+            ampelFarbe = "red"
+        elif overall_avg < 5:
+            ampelFarbe = "yellow"
+        else:
+            ampelFarbe = "green"
+
+        ampel_canvas = ctk.CTkCanvas(frameAuswertung, width=60, height=180, bg="white", highlightthickness=0)
+        ampel_canvas.pack(pady=(10, 10))
+
+        # Drei Kreise für die Ampel
+        # Rot oben, Gelb Mitte, Grün unten
+        ampel_canvas.create_oval(10, 10, 50, 50, fill="red"   if ampelFarbe=="red"   else "#550000", outline="")
+        ampel_canvas.create_oval(10, 65, 50, 105, fill="yellow" if ampelFarbe=="yellow" else "#555500", outline="")
+        ampel_canvas.create_oval(10, 120, 50, 160, fill="green" if ampelFarbe=="green" else "#003300", outline="")
+        ampel_canvas.create_text(30, 170, text="Ampel", font=("Arial", 10))
         
         # Buttons für verschiedene Ansichten
         button_frame = ctk.CTkFrame(frameAuswertung)
