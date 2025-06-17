@@ -488,6 +488,10 @@ def AuswertungAnzeigen():
         }
 
         # Matplotlib Figure erstellen
+        # Ampelanzeige für jede Kategorie
+AmpelAnzeigenKategorie(frameAuswertung, sum(kategorie1_durchschnitt.values()) / len(kategorie1_durchschnitt), "Kategorie 1")
+AmpelAnzeigenKategorie(frameAuswertung, sum(kategorie2_durchschnitt.values()) / len(kategorie2_durchschnitt), "Kategorie 2")
+AmpelAnzeigenKategorie(frameAuswertung, sum(kategorie3_durchschnitt.values()) / len(kategorie3_durchschnitt), "Kategorie 3")
         fig, axes = plt.subplots(2, 2, figsize=(12, 8))
         fig.suptitle(f'Auswertung der Mitarbeiterumfrage - {len(Antworten)} Teilnehmer', fontsize=16, fontweight='bold')
         
